@@ -173,13 +173,33 @@ retfound_model = load_retfound(r"D:/Models/RETFound/RETFound_mae_meh.pth")
 
 > ⚠️ Update any other file that calls `load_retfound(...)` with your local checkpoint path.
 
-### 4. Run the Backend
+### 4. Environment Setup & Running the App
+
+**Activate the Conda environment:**
+
+```bash
+conda activate D:\RETFound\env
+```
+
+**Navigate to the project directory:**
+
+```bash
+cd D:\RETFound\RETFound
+```
+
+***(Optional)* Launch Jupyter Notebook** for model exploration or training:
+
+```bash
+jupyter notebook
+```
+
+**Start the backend server:**
 
 ```bash
 python -m backend.app
 ```
 
-Backend runs at: `http://127.0.0.1:5000`
+Server runs at: `http://127.0.0.1:5000`
 
 If successful, you should see:
 
@@ -187,7 +207,7 @@ If successful, you should see:
 * Running on http://127.0.0.1:5000
 ```
 
-### 5. Run the Frontend
+**Start the frontend:**
 
 ```bash
 cd frontend
