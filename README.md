@@ -237,6 +237,19 @@ Extracted feature vectors are passed to an **XGBoost** classifier trained on:
 
 ---
 
+## 📦 Datasets
+
+This project was trained and evaluated on the following publicly available retinal image datasets:
+
+| Dataset | Official Source | RETFound Data Split |
+|---|---|---|
+| APTOS 2019 | [Kaggle](https://www.kaggle.com/competitions/aptos2019-blindness-detection/data) | [Google Drive](https://drive.google.com/file/d/162YPf4OhMVxj9TrQH0GnJv0n7z7gJWpj/view?usp=sharing) |
+| MESSIDOR-2 | [ADCIS](https://www.adcis.net/en/third-party/messidor2/) | [Google Drive](https://drive.google.com/file/d/1vOLBUK9xdzNV8eVkRjVdNkRwhPfaOmda/view?usp=sharing) |
+
+> Data splits sourced from the [RETFound Benchmark](https://github.com/rmaphoh/RETFound).
+
+---
+
 ## 📊 Performance Highlights
 
 - ✅ RETFound pretrained on **1.6M retinal images**
