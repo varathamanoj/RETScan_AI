@@ -134,7 +134,46 @@ conda activate retfound
 pip install -r requirements.txt
 ```
 
-### 3. Run the Backend
+### 3. Download Pretrained Model
+
+This project requires the pretrained **RETFound_mae_meh.pth** checkpoint.
+
+**Step 1 — Download the checkpoint** from Hugging Face:
+
+> 🤗 [YukunZhou/RETFound_mae_meh](https://huggingface.co/YukunZhou/RETFound_mae_meh)
+
+**Step 2 — Create a local folder** to store the model. For example:
+
+```text
+D:/Models/RETFound/
+```
+
+**Step 3 — Move the checkpoint** into that folder:
+
+```text
+D:/Models/RETFound/RETFound_mae_meh.pth
+```
+
+**Step 4 — Update the checkpoint path** in the following files with your local path:
+
+`backend/services/predictor.py`
+```python
+checkpoint_path = r"D:/Models/RETFound/RETFound_mae_meh.pth"
+```
+
+`backend/app.py`
+```python
+retfound_model = load_retfound(r"D:/Models/RETFound/RETFound_mae_meh.pth")
+```
+
+`test_predictor.py`
+```python
+retfound_model = load_retfound(r"D:/Models/RETFound/RETFound_mae_meh.pth")
+```
+
+> ⚠️ Update any other file that calls `load_retfound(...)` with your local checkpoint path.
+
+### 4. Run the Backend
 
 ```bash
 python -m backend.app
@@ -142,7 +181,13 @@ python -m backend.app
 
 Backend runs at: `http://127.0.0.1:5000`
 
-### 4. Run the Frontend
+If successful, you should see:
+
+```
+* Running on http://127.0.0.1:5000
+```
+
+### 5. Run the Frontend
 
 ```bash
 cd frontend
@@ -219,7 +264,7 @@ This project is built upon **RETFound**, a retinal foundation model developed by
 
 ## 👨‍💻 Author
 
-**VARATHAMANOJ** — AI & ML Developer
+**VARATHAMANOJ V** — AI & ML Developer
 
 [![GitHub](https://img.shields.io/badge/GitHub-varathamanoj-181717?logo=github)](https://github.com/varathamanoj)
 
