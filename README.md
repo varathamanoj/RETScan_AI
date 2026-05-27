@@ -1,272 +1,236 @@
-## RETFound - A foundation model for retinal images
+<div align="center">
 
+# 🔬 RETScan AI
 
-Official repo including a series of foundation models and applications for retinal images.<br>
-`[RETFound-MAE]`:[RETFound: a foundation model for generalizable disease detection from retinal images](https://www.nature.com/articles/s41586-023-06555-x).<br>
-`[RETFound-DINOv2]`:[Revealing the Impact of Pre-training Data on Medical Foundation Models](https://www.researchsquare.com/article/rs-6080254/v1).<br>
-`[DINOv2]`:[General-purpose vision foundation models DINOv2 by Meta](https://github.com/facebookresearch/dinov2).<br>
-`[DINOv3]`:[General-purpose vision foundation models DINOv3 by Meta](https://github.com/facebookresearch/dinov3).<br>
+**AI-powered Diabetic Retinopathy Detection using RETFound Vision Transformer & XGBoost**
 
+[![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white)](https://python.org)
+[![Flask](https://img.shields.io/badge/Flask-Backend-lightgrey?logo=flask)](https://flask.palletsprojects.com)
+[![React](https://img.shields.io/badge/React-Frontend-61DAFB?logo=react&logoColor=black)](https://reactjs.org)
+[![PyTorch](https://img.shields.io/badge/PyTorch-ML-EE4C2C?logo=pytorch&logoColor=white)](https://pytorch.org)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Database-47A248?logo=mongodb&logoColor=white)](https://mongodb.com)
+[![License](https://img.shields.io/badge/License-Educational%20%2F%20Research-yellow)](LICENSE)
 
-Please contact 	**ykzhoua@gmail.com** or **yukun.zhou.19@ucl.ac.uk** if you have questions.
+</div>
 
+---
 
-### 📝Key features
+## 📌 Overview
 
-- RETFound is pre-trained on 1.6 million retinal images with self-supervised learning
-- RETFound has been validated in multiple disease detection tasks
-- RETFound can be efficiently adapted to customised tasks
+**RETScan AI** is a full-stack healthcare web application that automates the detection and severity classification of **Diabetic Retinopathy (DR)** from retinal fundus images.
 
+Diabetic Retinopathy is one of the leading causes of preventable blindness worldwide. Early detection is critical — RETScan AI assists healthcare professionals by instantly analyzing retinal fundus images and classifying disease severity using state-of-the-art deep learning.
 
-### 🎉News
+The system combines **[RETFound](https://github.com/rmaphoh/RETFound)** — a retinal foundation model pretrained on 1.6 million retinal images — with an **XGBoost** classifier for accurate, efficient screening.
 
-- 🐉2025/09: **Preprint benchmarking DINOv3, DINOv2, and RETFound is [available](https://arxiv.org/abs/2509.03421)!**
-- 🐉2025/09: **We included state-of-the-art DINOv3 into fine-tuning pipeline for retinal applications!**
-- 🐉2025/02: **We organised the model weights on HuggingFace, no more manual downloads needed!**
-- 🐉2025/02: **Multiple [pre-trained weights](https://huggingface.co/YukunZhou), including MAE-based and DINOV2-based, are added!**
-- 🐉2025/02: **We update the version of packages, such as CUDA12+ and PyTorch 2.3+!**
-- 🐉2024/01: [Feature vector notebook](https://github.com/rmaphoh/RETFound_MAE/blob/main/latent_feature.ipynb) are now online!
-- 🐉2024/01: [Data split and model checkpoints](BENCHMARK.md) for public datasets are now online!
-- 🎄2023/12: [Colab notebook](https://colab.research.google.com/drive/1_X19zdMegmAlqPAEY0Ao659fzzzlx2IZ?usp=sharing) is now online - free GPU & simple operation!
+---
 
+## 🩺 Severity Classification
 
-### 🔧Install environment
+| Grade | Label | Description |
+|:---:|---|---|
+| 0 | **No DR** | No signs of diabetic retinopathy |
+| 1 | **Mild DR** | Microaneurysms only |
+| 2 | **Moderate DR** | More than microaneurysms but less than severe |
+| 3 | **Severe DR** | Extensive retinal hemorrhages, venous beading |
 
-1. Create environment with conda:
+---
+
+## ✨ Features
+
+- 📤 **Upload** retinal fundus images through a modern web UI
+- ⚙️ **Automated preprocessing** — resize, normalize, standardize
+- 🧠 **RETFound feature extraction** via Vision Transformer (ViT)
+- 📊 **XGBoost classification** for four-stage DR severity
+- 📋 **Patient diagnostic history** management
+- 👨‍⚕️ **Doctor review workflow** with report management
+- 🔒 **Secure report storage** with MongoDB
+- 📱 **Responsive** web interface
+
+---
+
+## 🏗️ System Architecture
 
 ```
-conda create -n retfound python=3.11.0 -y
+Patient Upload
+      │
+      ▼
+Image Preprocessing
+(RGB → Resize 224×224 → Normalize)
+      │
+      ▼
+RETFound Feature Extraction
+(Vision Transformer — pretrained on 1.6M retinal images)
+      │
+      ▼
+XGBoost Classification
+      │
+      ▼
+Severity Prediction (No DR / Mild / Moderate / Severe)
+      │
+      ▼
+Report Generation → Patient / Doctor Dashboard
+```
+
+---
+
+## 🧰 Tech Stack
+
+| Layer | Technologies |
+|---|---|
+| **Frontend** | React.js, Vite, TypeScript, HTML5, CSS3 |
+| **Backend** | Flask, Python |
+| **ML / AI** | RETFound, Vision Transformer (ViT), XGBoost, PyTorch, Scikit-learn |
+| **Data** | NumPy, Pandas |
+| **Database** | MongoDB |
+| **Dev Tools** | Git, GitHub, Jupyter Notebook |
+
+---
+
+## 📂 Project Structure
+
+```
+RETScan_AI/
+│
+├── backend/
+│   ├── app.py                  # Flask application entry point
+│   └── services/
+│       ├── predictor.py        # ML prediction pipeline
+│       └── preprocessing.py   # Image preprocessing utilities
+│
+├── frontend/
+│   ├── src/                    # React source files
+│   ├── public/                 # Static assets
+│   └── package.json
+│
+├── models_vit.py               # RETFound / ViT model definition
+├── requirements.txt
+├── README.md
+└── util/                       # Helper utilities
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Python 3.11
+- Node.js & npm
+- MongoDB
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/varathamanoj/RETScan_AI.git
+cd RETScan_AI
+```
+
+### 2. Set Up Python Environment
+
+```bash
+conda create -n retfound python=3.11 -y
 conda activate retfound
-```
-
-2. Install dependencies
-
-```
-pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu121
-git clone https://github.com/rmaphoh/RETFound/
-cd RETFound
 pip install -r requirements.txt
-pip install ipykernel
-python -m ipykernel install --user --name retfound --display-name "Python (retfound)"
 ```
 
+### 3. Run the Backend
 
-### 🌱Fine-tuning with RETFound weights
-
-1. Get access to the pre-trained models on HuggingFace (register an account and fill in the form) and go to step 2:
-<table><tbody>
-<!-- START TABLE -->
-<!-- TABLE HEADER -->
-<th valign="bottom"></th>
-<th valign="bottom">ViT-Large</th>
-<th valign="bottom">Source</th>
-<!-- TABLE BODY -->
-<tr><td align="left">RETFound_mae_natureCFP</td>
-<td align="center"><a href="https://huggingface.co/YukunZhou/RETFound_mae_natureCFP">access</a></td>
-<td align="center"><a href="https://www.nature.com/articles/s41586-023-06555-x">Nature RETFound paper</a></td>
-</tr>
-<!-- TABLE BODY -->
-<tr><td align="left">RETFound_mae_natureOCT</td>
-<td align="center"><a href="https://huggingface.co/YukunZhou/RETFound_mae_natureOCT">access</a></td>
-<td align="center"><a href="https://www.nature.com/articles/s41586-023-06555-x">Nature RETFound paper</a></td>
-</tr>
-<!-- TABLE BODY -->
-<tr><td align="left">RETFound_mae_meh</td>
-<td align="center"><a href="https://huggingface.co/YukunZhou/RETFound_mae_meh">access</a></td>
-<td align="center"><a href="https://www.researchsquare.com/article/rs-6080254/v1">FM data paper</a></td>
-</tr>
-<!-- TABLE BODY -->
-<tr><td align="left">RETFound_mae_shanghai</td>
-<td align="center"><a href="https://huggingface.co/YukunZhou/RETFound_mae_shanghai">access</a></td>
-<td align="center"><a href="https://www.researchsquare.com/article/rs-6080254/v1">FM data paper</a></td>
-</tr>
-<!-- TABLE BODY -->
-<tr><td align="left">RETFound_dinov2_meh</td>
-<td align="center"><a href="https://huggingface.co/YukunZhou/RETFound_dinov2_meh">access</a></td>
-<td align="center"><a href="https://www.researchsquare.com/article/rs-6080254/v1">FM data paper</a></td>
-</tr>
-<!-- TABLE BODY -->
-<tr><td align="left">RETFound_dinov2_shanghai</td>
-<td align="center"><a href="https://huggingface.co/YukunZhou/RETFound_dinov2_shanghai">access</a></td>
-<td align="center"><a href="https://www.researchsquare.com/article/rs-6080254/v1">FM data paper</a></td>
-</tr>
-</tbody></table>
-
-2. Login in your HuggingFace account, where HuggingFace token can be [created and copied](https://huggingface.co/settings/tokens).
-```
-huggingface-cli login --token YOUR_HUGGINGFACE_TOKEN
+```bash
+python -m backend.app
 ```
 
-**Optional**: if your machine and server cannot access HuggingFace due to internet wall, run the command below (Do not run it if you can access):
-```
-export HF_ENDPOINT=https://hf-mirror.com
-```
+Backend runs at: `http://127.0.0.1:5000`
 
-3. If you would like to fine-tune [DINOv2](https://github.com/facebookresearch/dinov2) and [DINOv3](https://github.com/facebookresearch/dinov3), please visit their GitHub repositories to download the model weights and put them in the RETFound folder.
+### 4. Run the Frontend
 
-4. Organise your data into this directory structure (Public datasets used in this study can be [downloaded here](BENCHMARK.md))
-
-```
-├── data folder
-    ├──train
-        ├──class_a
-        ├──class_b
-        ├──class_c
-    ├──val
-        ├──class_a
-        ├──class_b
-        ├──class_c
-    ├──test
-        ├──class_a
-        ├──class_b
-        ├──class_c
-``` 
-
-
-
-5. Start fine-tuning by running `sh train.sh`.
-
-
-In `train.sh`, the model can be selected by changing the hyperparameters `MODEL`, `MODEL_ARCH`, `FINETUNE`:
-
-**RETFound**:
-
-| MODEL           | MODEL_ARCH               | FINETUNE                 | SIZE                     |
-|-----------------|--------------------------|--------------------------|--------------------------|
-| RETFound_mae    | retfound_mae             | RETFound_mae_natureCFP   | ~300M                    |
-| RETFound_mae    | retfound_mae             | RETFound_mae_natureOCT   | ~300M                    |
-| RETFound_mae    | retfound_mae             | RETFound_mae_meh         | ~300M                    |
-| RETFound_mae    | retfound_mae             | RETFound_mae_shanghai    | ~300M                    |
-| RETFound_dinov2 | retfound_dinov2          | RETFound_dinov2_meh      | ~300M                    |
-| RETFound_dinov2 | retfound_dinov2          | RETFound_dinov2_shanghai | ~300M                    |
-
-
-**DINOv3**:
-
-| MODEL           | MODEL_ARCH               | FINETUNE                         | SIZE                     |
-|-----------------|--------------------------|----------------------------------|--------------------------|
-| Dinov3          | dinov3_vits16            | dinov3_vits16_pretrain.pth       | ~21M                     |
-| Dinov3          | dinov3_vits16plus        | dinov3_vits16plus_pretrain.pth   | ~29M                     |
-| Dinov3          | dinov3_vitb16            | dinov3_vitb16_pretrain.pth       | ~86M                     |
-| Dinov3          | dinov3_vitl16            | dinov3_vitl16_pretrain.pth       | ~300M                    |
-| Dinov3          | dinov3_vith16plus        | dinov3_vith16plus_pretrain.pth   | ~840M                    |
-| Dinov3          | dinov3_vit7b16           | dinov3_vit7b16_pretrain.pth      | ~6.7B                    |
-
-
-**DINOv2**:
-
-| MODEL           | MODEL_ARCH               | FINETUNE                     | SIZE                     |
-|-----------------|--------------------------|------------------------------|--------------------------|
-| Dinov2          | dinov2_vits14            | dinov2_vits14_pretrain.pth   | ~21M                     |
-| Dinov2          | dinov2_vitb14            | dinov2_vitb14_pretrain.pth   | ~86M                     |
-| Dinov2          | dinov2_vitl14            | dinov2_vitl14_pretrain.pth   | ~300M                    |
-| Dinov2          | dinov2_vitg14            | dinov2_vitg14_pretrain.pth   | ~1.1B                    |
-
-
-Change the DATA_PATH to your dataset directory.
-
-```
-# ==== Model settings ====
-# adaptation {finetune,lp}
-ADAPTATION="finetune"
-MODEL="RETFound_dinov2"
-MODEL_ARCH="retfound_dinov2"
-FINETUNE="RETFound_dinov2_meh"
-
-# ==== Data settings ====
-# change the dataset name and corresponding class number
-DATASET="MESSIDOR2"
-NUM_CLASS=5
-
-# =======================
-DATA_PATH="PATH TO THE DATASET"
-TASK="${MODEL_ARCH}_${DATASET}_${ADAPTATION}"
-
-torchrun --nproc_per_node=1 --master_port=48766 main_finetune.py \
-  --model "${MODEL}" \
-  --model_arch "${MODEL_ARCH}" \
-  --finetune "${FINETUNE}" \
-  --savemodel \
-  --global_pool \
-  --batch_size 24 \
-  --world_size 1 \
-  --epochs 50 \
-  --nb_classes "${NUM_CLASS}" \
-  --data_path "${DATA_PATH}" \
-  --input_size 224 \
-  --task "${TASK}" \
-  --adaptation "${ADAPTATION}" 
-
+```bash
+cd frontend
+npm install
+npm run dev
 ```
 
+Frontend runs at: `http://localhost:5173`
 
+---
 
-6. For evaluation only (download data and model checkpoints [here](BENCHMARK.md); change the DATA_PATH below)
+## 🤖 Model Pipeline
 
+### Image Preprocessing
+- RGB conversion
+- Resizing to **224 × 224** pixels
+- Pixel normalization & standardization
 
-```
-# ==== Model/settings (match training) ====
-ADAPTATION="finetune"
-MODEL="RETFound_dinov2"
-MODEL_ARCH="retfound_dinov2"
-FINETUNE="RETFound_dinov2_meh"
+### Feature Extraction
+RETFound uses a **Vision Transformer (ViT)** architecture (~300M parameters) pretrained with self-supervised learning on 1.6 million retinal images across large-scale ophthalmic datasets.
 
-# ==== Data/settings (match training) ====
-DATASET="MESSIDOR2"
-NUM_CLASS=5
+### Classification
+Extracted feature vectors are passed to an **XGBoost** classifier trained on:
 
-# =======================
-DATA_PATH="PATH TO THE DATASET"
-TASK="${MODEL_ARCH}_${DATASET}_${ADAPTATION}"
+- **APTOS 2019** — Kaggle Diabetic Retinopathy Dataset (high-quality fundus images)
+- **MESSIDOR-2** — Clinical retinal image dataset for DR evaluation
 
-# Path to the trained checkpoint (adjust if you saved elsewhere)
-CKPT="./output_dir/${TASK}/checkpoint-best.pth"
+---
 
-# ==== Evaluation only ====
-torchrun --nproc_per_node=1 --master_port=48766 main_finetune.py \
-  --model "${MODEL}" \
-  --model_arch "${MODEL_ARCH}" \
-  --savemodel \
-  --global_pool \
-  --batch_size 128 \
-  --world_size 1 \
-  --nb_classes "${NUM_CLASS}" \
-  --data_path "${DATA_PATH}" \
-  --input_size 224 \
-  --task "${TASK}" \
-  --adaptation "${ADAPTATION}" \
-  --eval \
-  --resume "${CKPT}"
+## 📊 Performance Highlights
 
-```
+- ✅ RETFound pretrained on **1.6M retinal images**
+- ✅ **~300M parameter** Vision Transformer backbone
+- ✅ Multi-class DR classification (4 grades)
+- ✅ Automated end-to-end prediction pipeline
+- ✅ Real-time web-based diagnosis workflow
 
+---
 
-### 📃Citation
+## 🔮 Future Enhancements
 
-If you find this repository useful, please consider citing this paper:
+- [ ] Doctor appointment scheduling
+- [ ] PDF report generation
+- [ ] Cloud deployment (AWS / GCP / Azure)
+- [ ] Multi-disease retinal screening
+- [ ] Explainable AI (Grad-CAM visualizations)
+- [ ] Mobile application support
 
+---
 
-```
+## 📚 Acknowledgements
+
+This project is built upon **RETFound**, a retinal foundation model developed by Yukun Zhou et al.
+
+- 📦 **Original Repository:** [github.com/rmaphoh/RETFound](https://github.com/rmaphoh/RETFound)
+- 📄 **Research Paper:** Zhou et al., *A Foundation Model for Generalizable Disease Detection from Retinal Images*, **Nature 2023**  
+  👉 [nature.com/articles/s41586-023-06555-x](https://www.nature.com/articles/s41586-023-06555-x)
+
+### Citation
+
+```bibtex
 @article{zhou2023foundation,
   title={A foundation model for generalizable disease detection from retinal images},
-  author={Zhou, Yukun and Chia, Mark A and Wagner, Siegfried K and Ayhan, Murat S and Williamson, Dominic J and Struyven, Robbert R and Liu, Timing and Xu, Moucheng and Lozano, Mateo G and Woodward-Court, Peter and others},
+  author={Zhou, Yukun and others},
   journal={Nature},
   volume={622},
   number={7981},
   pages={156--163},
-  year={2023},
-  publisher={Nature Publishing Group UK London}
+  year={2023}
 }
 ```
 
-```
-@misc{zhou2025generalistversusspecialistvision,
-      title={Generalist versus Specialist Vision Foundation Models for Ocular Disease and Oculomics}, 
-      author={Yukun Zhou and Paul Nderitu and Jocelyn Hui Lin Goh and Justin Engelmann and Siegfried K. Wagner and Anran Ran and Hongyang Jiang and Lie Ju and Ke Zou and Sahana Srinivasan and Hyunmin Kim and Takahiro Ninomiya and Zheyuan Wang and Gabriel Dawei Yang and Eden Ruffell and Dominic Williamson and Rui Santos and Gabor Mark Somfai and Carol Y. Cheung and Tien Yin Wong and Daniel C. Alexander and Yih Chung Tham and Pearse A. Keane},
-      year={2025},
-      eprint={2509.03421},
-      archivePrefix={arXiv},
-      primaryClass={eess.IV},
-      url={https://arxiv.org/abs/2509.03421}, 
-}
-```
+---
+
+## 👨‍💻 Author
+
+**VARATHAMANOJ** — AI & ML Developer
+
+[![GitHub](https://img.shields.io/badge/GitHub-varathamanoj-181717?logo=github)](https://github.com/varathamanoj)
+
+---
+
+## 📝 License
+
+This project is intended for **educational and research purposes** only. Not for clinical deployment without proper validation and regulatory approval.
+
+---
+
+<div align="center">
+  <sub>Built with ❤️ using RETFound · PyTorch · React · Flask</sub>
+</div>
